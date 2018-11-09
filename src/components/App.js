@@ -1,15 +1,14 @@
-// [uncomment when ready]
 // This component handles the App template used on every page.
 import React, {PropTypes} from 'react';
 import Header from './common/Header';
-// import {connect} from 'react-redux';
+import {connect} from 'react-redux';
 
 class App extends React.Component {
   render() {
     return (
       <div className="container-fluid">
         <Header
-          // loading={this.props.loading}
+          loading={this.props.loading}
         />
         {this.props.children}
       </div>
@@ -18,14 +17,14 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  children: PropTypes.object.isRequired
-//   loading: PropTypes.bool.isRequired
+  children: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired
 };
 
-// function mapStateToProps(state, ownProps) {
-//   return {
-//     loading: state.ajaxCallsInProgress > 0
-//   };
-// }
+function mapStateToProps(state, ownProps) {
+  return {
+    loading: state.ajaxCallsInProgress > 0
+  };
+}
 
-export default App; // connect(mapStateToProps)(App)
+export default connect(mapStateToProps)(App);
